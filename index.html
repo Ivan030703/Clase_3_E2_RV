@@ -19,7 +19,7 @@
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = ctx.createOscillator();      // el osc es lo que produce el tono
       const gain = ctx.createGain();           // el gain controla el volumen en el tiempo
-      osc.frequency.value = frecuencia/2;        // tono más agudo = frecuencia más alta
+      osc.frequency.value = 10;        // tono más agudo = frecuencia más alta
       osc.connect(gain);
       gain.connect(ctx.destination);           // "destination" = las bocinas/audífonos
       gain.gain.setValueAtTime(0.15, ctx.currentTime);
@@ -136,7 +136,7 @@
           if (this.segundosRestantes <= 0) {
             this.terminarJuego();
           }
-        }, 1000);
+        }, 3000);
       },
 
       sumarPunto: function () {
@@ -155,7 +155,7 @@
 
       reiniciar: function () {
         this.puntos = 0;
-        this.segundosRestantes = 40;
+        this.segundosRestantes = 60;
         this.jugando = true;
         this.hudPuntos.setAttribute('value', 'Puntos: 2');
         this.hudTiempo.setAttribute('value', 'Tiempo: 40');
@@ -242,7 +242,7 @@
 
         <!-- HUD: hijos de la cámara, por eso "viajan" contigo al mirar alrededor -->
         <a-text id="hud-puntos" value="Puntos: 0" position="-0.9 0.6 -1.4" width="2.2" color="#FFFFFF"></a-text>
-        <a-text id="hud-tiempo" value="Tiempo: 30" position="0.4 0.6 -1.4" width="2.2" color="#FFFFFF"></a-text>
+        <a-text id="hud-tiempo" value="Tiempo: 60" position="0.4 0.6 -1.4" width="2.2" color="#FFFFFF"></a-text>
 
         <!-- Mensaje de fin de juego: oculto hasta que se acaba el tiempo -->
         <a-text id="hud-final" value="" position="-0.9 0.15 -1.4" width="2.6" color="#FFD166" visible="false"></a-text>
