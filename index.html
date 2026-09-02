@@ -19,7 +19,7 @@
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = ctx.createOscillator();      // el osc es lo que produce el tono
       const gain = ctx.createGain();           // el gain controla el volumen en el tiempo
-      osc.frequency.value = frecuencia;        // tono más agudo = frecuencia más alta
+      osc.frequency.value = frecuencia/2;        // tono más agudo = frecuencia más alta
       osc.connect(gain);
       gain.connect(ctx.destination);           // "destination" = las bocinas/audífonos
       gain.gain.setValueAtTime(0.15, ctx.currentTime);
@@ -111,8 +111,8 @@
     // ==================================================================
     AFRAME.registerComponent('gestor-juego', {
       init: function () {
-        this.puntos = 2;
-        this.segundosRestantes = 40;
+        this.puntos = 0;
+        this.segundosRestantes = 60;
         this.jugando = true;
 
         // Guardamos referencias a los textos del HUD para no buscarlos cada vez
@@ -141,7 +141,7 @@
 
       sumarPunto: function () {
         if (!this.jugando) return;
-        this.puntos++;
+        this.puntos=this.puntos+2;
         this.hudPuntos.setAttribute('value', `Puntos: ${this.puntos}`);
       },
 
